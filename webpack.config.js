@@ -1,22 +1,25 @@
-var path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
-const webpack = require('webpack'); //to access built-in plugins
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = (env, options) => {
-    const isProduction = options.mode === 'production';
+module.exports = () => {
+    const isProduction = process.env.NODE_ENV === 'production';
     const conf = {
         mode: isProduction ? 'production' : 'development',
         devtool: isProduction ? 'none' : 'source-map',
         watch: !isProduction,
+        devServer: {
+          contentBase: path.join(__dirname, 'dist'),
+          compress: false,
+          port: 9000,
+          open: true
+        },
+      
         entry: './src/script.js',
         output: {
             path: path.join(__dirname, 'dist'),
             filename: 'main.js'
         },
-        // resolve: {
-        //     extensions: ['.ts', '.js', '.tsx', '.jsx']
-        // },
         resolve: {
             modules: [path.resolve(__dirname, './src'), 'node_modules'],
             extensions: ['.js', '.jsx']
@@ -48,7 +51,7 @@ module.exports = (env, options) => {
                         loader: 'file-loader',
                         options: { 
                           name: '[name].[ext]' ,
-                          outputPath: '../img/',
+                          outputPath: './img/',
                           publicPath:'img/'
                         },
                       },
@@ -59,6 +62,11 @@ module.exports = (env, options) => {
         },
         plugins: [
             new CleanWebpackPlugin(),
+            new HtmlWebpackPlugin({
+              title: 'HW2',
+              template: 'index.html',
+              filename: 'index.html'
+            }),
         ]
     };
     return conf;

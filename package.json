@@ -5,10 +5,12 @@
   "main": "script.js",
   "scripts": {
     "test": "jest ",
-    "dev": "webpack --mode development",
-    "prod": "webpack --mode production",
+    "dev": "webpack",
+    "prod": "webpack NODE_ENV=production",
     "build:prod": "cross-env NODE_ENV=production node_modules/.bin/webpack -p",
-    "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack"
+    "build:dev": "cross-env NODE_ENV=development node_modules/.bin/webpack",
+    "start:dev": "cross-env node_modules/.bin/webpack-dev-server --watch",
+    "start:prod": "cross-env node_modules/.bin/webpack-dev-server  --mode production"
   },
   "keywords": [],
   "author": "Nadia Pougatcheva",
@@ -43,7 +45,8 @@
     "lodash": "^4.17.19",
     "url-loader": "^4.1.1",
     "webpack": "^4.44.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "babel": {
     "presets": [
