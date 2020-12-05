@@ -26,7 +26,7 @@ header {
 	margin: 0;
 }
 div.header {
-	max-width: 1020px;
+	max-width: 1100px;
 	min-height: 89px;
     margin: auto;
     background-color: #232323; 
@@ -43,7 +43,7 @@ div.header {
 	margin: 40px;
 	font-size: 25px;
 	line-height: 6px;
-	color: #ffffff;
+	color: #f65261;
 	font-weight: 700;
 	text-align: left;
 	text-decoration: none;
@@ -51,17 +51,19 @@ div.header {
 
 .header--logo a {
 	text-decoration: none;
-	color: #ffffff;
+	color: #f65261;
 }
 
-.header--logo .asterix {
-	color:#f06c64;
+.header--logo a b {
+	font-size: larger;
 }
 
 nav.header--navigation {
 	float: right;
 	margin: 0;
 }
+
+
 /**  Navigation */
 
 ul.navigation {
@@ -103,7 +105,7 @@ section.slider {
 }
 
 div.slider {
-	max-width: 1020px;
+	max-width: 1100px;
 	max-height: 600px;
     margin: auto;
     background-color: #232323; 
@@ -216,7 +218,7 @@ div.our-services {
 	padding-left: 40px;
 	padding-top: 60px;
 	top: 0;
-	max-width: 1020px;
+	max-width: 1100px;
 	margin: auto;
 }
 
@@ -294,7 +296,7 @@ section.contact-form {
 }
 
 div.contact-form {
-	max-width: 1020px;
+	max-width: 1100px;
 	min-height: 648px;
 	margin: auto;
 	position: relative;
@@ -447,7 +449,7 @@ section.portfolio {
 }
 
 div.portfolio {
-	max-width: 1020px;
+	max-width: 1100px;
 	min-height: 800px;
 	margin: auto;
 	position: relative;
@@ -512,8 +514,8 @@ div.portfolio--images {
 
 	display: inline-block;
 
-	width: 200px;
-	height: 187px;
+	width: 322px;
+	height: 455px;
 
 	flex-grow: 1;
     flex-shrink: 0;
@@ -526,6 +528,10 @@ div.portfolio--images {
 
 .portfolio--images img:hover {
 	opacity: 0.5;
+}
+
+.movie-title {
+	color: #ffffff;
 }
 
 .portfolio-bottom {
@@ -554,7 +560,7 @@ section.about-us {
 }
 
 div.about-us {
-	max-width: 1020px;
+	max-width: 1100px;
 	margin: auto;
 	position: relative;
 	left: 0;
@@ -662,7 +668,7 @@ footer {
 
 div.footer {
 	margin: auto;
-	max-width: 1020px;
+	max-width: 1100px;
 	height: 76px;
 	position: relative;
 	left: 0px;

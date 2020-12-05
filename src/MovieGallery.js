@@ -1,13 +1,11 @@
 import React from 'react';
 
-import img1 from './img/Image1_.png'
-import img2 from './img/Image2_.png'
-import img3 from './img/Image3_.png'
-import img4 from './img/Image4_.png'
-import img5 from './img/Image5_.png'
-import img6 from './img/Image6_.png'
-import img7 from './img/Image7_.png'
-import img8 from './img/Image8_.png'
+import img1 from './img/m1.png'
+import img2 from './img/m2.png'
+import img3 from './img/m3.png'
+import img4 from './img/m4.png'
+import img5 from './img/m5.png'
+import img6 from './img/m6.png'
 
 import './style.css';
 import MovieCard from './MovieCard';
@@ -19,14 +17,12 @@ class MovieGallery extends React.Component {
             <section class="portfolio" id="portfolio">
                 <div class="portfolio">
                     <div class="portfolio--images">
-                        <MovieCard title='Undoing' img={img1}/>
-                        <MovieCard title='It' img={img2}/>
-                        <MovieCard title='Ameli' img={img3}/>
-                        <MovieCard title='Star Wars' img={img4}/>
-                        <MovieCard title='Undoing' img={img5}/>
-                        <MovieCard title='It' img={img6}/>
-                        <MovieCard title='Ameli' img={img7}/>
-                        <MovieCard title='Star Wars' img={img8}/>
+                        <MovieCard title='Pulp Fiction' img={img1} key='1'/>
+                        <MovieCard title='Bohemian rapsody' img={img2}  key='2'/>
+                        <MovieCard title='Kill Bill' img={img3} key='1'/>
+                        <MovieCard title='Avengers' img={img4} key='4'/>
+                        <MovieCard title='Inception' img={img5} key='5'/>
+                        <MovieCard title='Reservoir dogs' img={img6} key='6'/>
                     </div>
                 </div>
                 SECTION !
