@@ -7,12 +7,12 @@ import MovieGallery from './MovieGallery';
 class App extends React.Component {
     render() {
         return (
-            <div  className="App">
-            <Header/>
-            <main>
-                <MovieGallery showList="true"/>
-            </main>
-          </div>
+            <>
+                <Header/>
+                <main>
+                    <MovieGallery showList="true"/>
+                </main>
+            </>
         );
     }
 }

@@ -530,7 +530,11 @@ div.portfolio--images {
 	opacity: 0.5;
 }
 
-.movie-title {
+.movie--title {
+	color: #ffffff;
+}
+
+.movie--description {
 	color: #ffffff;
 }
 
