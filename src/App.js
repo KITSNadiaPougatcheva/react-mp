@@ -1,17 +1,18 @@
 import React from 'react';
 
-import './style.css';
-import Header from './Header';
+import Navigation from './Navigation';
 import MovieGallery from './MovieGallery';
+import Footer from './Footer';
 
 class App extends React.Component {
     render() {
         return (
             <>
-                <Header/>
+                <Navigation/>
                 <main>
                     <MovieGallery showList="true"/>
                 </main>
+                <Footer/>
             </>
         );
     }
