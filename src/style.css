@@ -450,7 +450,7 @@ section.portfolio {
 
 div.portfolio {
 	max-width: 1100px;
-	min-height: 800px;
+	/* min-height: 800px; */
 	margin: auto;
 	position: relative;
 	left: 0;
@@ -544,6 +544,10 @@ div.portfolio--images {
 	background-color: #323746;
 }
 
+.movies--empty-list {
+	font-size: larger;
+	color: #ffffff;
+}
 
 @media (max-width: 376px) {
 	.portfolio--images img {

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 import MenuItem from './MenuItem';
 
-import {default as menu} from "./menu.json";
+import menu from './menu';
 
 class Navigation extends React.Component {
     render() {

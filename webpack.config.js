@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require ('copy-webpack-plugin')
 
 module.exports = () => {
     const isProduction = process.env.NODE_ENV === 'production';
@@ -15,7 +16,7 @@ module.exports = () => {
           open: true
         },
       
-        entry: './src/script.js',
+        entry: './src/index.js',
         output: {
             path: path.join(__dirname, 'dist'),
             filename: 'main.js'
@@ -44,24 +45,15 @@ module.exports = () => {
                     test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
                     loader: 'file-loader?name=fonts/[name].[ext]'
                   },
-                  {
-                    test: /\.(gif|png|jpe?g|svg)$/i,
-                    use: [
-                      {
-                        loader: 'file-loader',
-                        options: { 
-                          name: '[name].[ext]' ,
-                          outputPath: './img/',
-                          publicPath:'img/'
-                        },
-                      },
-                      'image-webpack-loader'
-                    ],
-                  }
             ]
         },
         plugins: [
             new CleanWebpackPlugin(),
+            new CopyWebpackPlugin({
+                patterns: [
+                  { from: './src/img', to: './img' },
+                ],
+            }),
             new HtmlWebpackPlugin({
               title: 'HW2',
               template: 'index.html',

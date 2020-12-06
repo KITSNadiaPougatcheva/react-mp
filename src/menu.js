@@ -1,4 +1,4 @@
-[
+export default [
     {
         "title": "All",
         "href": "#all",

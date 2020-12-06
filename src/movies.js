@@ -1,4 +1,4 @@
-[
+export default [
     {
         "title": "Pulp Fiction",
         "description": "by Quentin Tarantino",
