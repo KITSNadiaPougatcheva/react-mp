@@ -10,7 +10,7 @@ module.exports = () => {
         devtool: isProduction ? 'none' : 'source-map',
         watch: !isProduction,
         devServer: {
-          contentBase: path.join(__dirname, 'dist'),
+          contentBase: path.join(__dirname, 'static'),
           compress: false,
           port: 9000,
           open: true
@@ -19,7 +19,7 @@ module.exports = () => {
         entry: './src/index.js',
         output: {
             path: path.join(__dirname, 'dist'),
-            filename: 'main.js'
+            filename: 'main.js',
         },
         resolve: {
             modules: [path.resolve(__dirname, './src'), 'node_modules'],
@@ -49,11 +49,6 @@ module.exports = () => {
         },
         plugins: [
             new CleanWebpackPlugin(),
-            new CopyWebpackPlugin({
-                patterns: [
-                  { from: './src/img', to: './img' },
-                ],
-            }),
             new HtmlWebpackPlugin({
               title: 'HW2',
               template: 'index.html',
