@@ -1,7 +1,6 @@
 import React from 'react';
 
-import './style.css';
-import MovieListErrorBoundaries from './MovieListErrorBoundaries';
+import ErrorBoundaries from './ErrorBoundaries';
 import MovieList from './MovieList';
 
 class MovieGallery extends React.Component {
@@ -10,9 +9,9 @@ class MovieGallery extends React.Component {
             <section className="portfolio" id="portfolio">
                 <div className="portfolio">
                     <div className="portfolio--images">
-                        <MovieListErrorBoundaries>
+                        <ErrorBoundaries>
                             <MovieList/>
-                        </MovieListErrorBoundaries>
+                        </ErrorBoundaries>
                     </div>
                 </div>
             </section>

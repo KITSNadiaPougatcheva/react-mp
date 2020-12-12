@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './style.css';
 import Navigation from './Navigation';
 import MovieGallery from './MovieGallery';
 import Footer from './Footer';
@@ -10,7 +11,7 @@ class App extends React.Component {
             <>
                 <Navigation/>
                 <main>
-                    <MovieGallery showList="true"/>
+                    <MovieGallery showList/>
                 </main>
                 <Footer/>
             </>

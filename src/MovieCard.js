@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function MovieCard(props) {
+    // throw new Error('My Test Error')
     return (
         <div>
             <img src={props.img} alt={props.title} />
@@ -14,6 +15,7 @@ function MovieCard(props) {
 MovieCard.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired
 }
 
 export default MovieCard;
