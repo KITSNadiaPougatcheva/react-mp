@@ -1,5 +1,7 @@
 import React from 'react';
 import Logo from './Logo';
+import FindMovie from './FindMovie';
+import AddMovieBtn from './AddMovieBtn';
 
 class Header extends React.Component {
     render() {
@@ -7,12 +9,10 @@ class Header extends React.Component {
             <header>
                 <div className="header">
                     <Logo/>
-                    <nav className="header--navigation">
-                        <ul className="navigation">
-                            {this.props.children}
-                        </ul>
-                    </nav>
+                    <AddMovieBtn/>
                 </div>
+                <FindMovie/>
+                <div class="header-bottom"></div>
             </header>
         );
     }
