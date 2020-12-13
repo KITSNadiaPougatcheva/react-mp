@@ -12,6 +12,6 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-    rootElement
-   );
+  rootElement
+);
 console.log('Script finished');

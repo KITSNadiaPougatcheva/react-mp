@@ -1,18 +1,20 @@
 import React from 'react';
 
 import './style.css';
-import Header from './Header';
+import Navigation from './Navigation';
 import MovieGallery from './MovieGallery';
+import Footer from './Footer';
 
 class App extends React.Component {
     render() {
         return (
-            <div  className="App">
-            <Header/>
-            <main>
-                <MovieGallery showList="true"/>
-            </main>
-          </div>
+            <>
+                <Navigation/>
+                <main>
+                    <MovieGallery showList/>
+                </main>
+                <Footer/>
+            </>
         );
     }
 }
