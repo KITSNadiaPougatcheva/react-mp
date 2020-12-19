@@ -538,14 +538,6 @@ div.portfolio {
 	background-color:  #232323;
 }
 
-div.portfolio h2 {
-	font-size: 30px;
-	line-height: 18px;
-	color: #666d89;
-	font-weight: 900;
-	text-align: left;
-}
-
 div.portfolio > p {
 	width: 90%;
 	font-size: 18px;
@@ -817,7 +809,7 @@ ul.social-media img:hover {
 
 /* Modal popup windows */
 
-.wrapper {
+.wrapper, .modal-wrapper {
 	position: fixed;
     top: 10px;
 	display: flex;
@@ -826,7 +818,10 @@ ul.social-media img:hover {
 	width: 100%;
 	min-height: 100%;
 	padding: 20px;
-  }
+	z-index: 100;
+	right: 0px;
+	left: 0px;
+}
 
 .wrapper.inactive {
 	display: none;
@@ -844,12 +839,12 @@ ul.social-media img:hover {
 	text-align: center;
   }
 
-.wrapper h2 {
+.modal-wrapper h2 {
 	color: #ffffff;
 	text-transform: uppercase;
   }
 
-.wrapper input[type=button], input[type=submit], input[type=reset]  {
+.modal-wrapper input[type=button], input[type=submit], input[type=reset]  {
 	background-color: #F65261;
 	border: none;
 	color: white;

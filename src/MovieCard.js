@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import EditMovie from "./EditMovie"
+import DeleteMovie from "./DeleteMovie"
 
 function MovieCard(props) {
     // throw new Error('My Test Error')
@@ -9,8 +11,8 @@ function MovieCard(props) {
             <img src={props.img} alt={props.title}/>
             <h3 className="movie--title">{props.title}</h3>
             <p className="movie--description">{props.description}</p>
-            <p className="movie--edit">Edit</p>
-            <p className="movie--delete">Delete</p>
+            <EditMovie/>
+            <DeleteMovie/>
         </div> 
     );
 }

@@ -9,32 +9,24 @@ class MovieList extends React.Component {
     }
 
     componentDidMount() {
-        const that = this
-        const showModal = (event) => {
-            event.preventDefault();
-            console.log('Show "Edit movie" form')
-            that.setState({activeState: 'wrapper edit-movie active'});
-        }
+        this.setState({ movies })
+    }
 
-        document.querySelector(".menuSortByName").addEventListener("click", event => {
-            event.preventDefault();
-            console.log('Sort by name');
-            movies.sort((a1, a2) => {
-                return a1.title.localeCompare(a2.title);
-            })
-            that.setState({ movies });
-        });
-
-        const elements = document.getElementsByClassName("movie--edit");
-        for(const elem of elements) {
-            elem.addEventListener("click", showModal);
-        }
+    sort = (movieList, sortBy) => {
+        movieList.sort((a1, a2) => {
+            if (sortBy === 'Rating') {
+                return a2.range - a1.range;
+            }
+            return a1.title.localeCompare(a2.title);
+        })
+        return movieList;
     }
 
     render() {
         return (
             <>
-                {this.state.movies.map((movie, idx) => (<MovieCard title={movie.title} description={movie.description} img={movie.img} key={movie.id}/>))}
+                {this.sort(this.state.movies, this.props.sortBy).map((movie) => 
+                    (<MovieCard title={movie.title} description={movie.description} img={movie.img} key={movie.id}/>))}
             </>
         );
     }

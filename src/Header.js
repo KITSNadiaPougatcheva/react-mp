@@ -1,18 +1,17 @@
 import React from 'react';
 import Logo from './Logo';
 import FindMovie from './FindMovie';
-import AddMovieBtn from './AddMovieBtn';
-
+import AddMovie from './AddMovie'
 class Header extends React.Component {
     render() {
         return (
             <header>
                 <div className="header">
                     <Logo/>
-                    <AddMovieBtn/>
+                    <AddMovie/>
                 </div>
                 <FindMovie/>
-                <div class="header-bottom"></div>
+                <div className="header-bottom"></div>
             </header>
         );
     }

@@ -3,7 +3,7 @@ import React from 'react';
 class FindMovie extends React.Component {
     render() {
         return (
-            <div class="header--find-movie">
+            <div className="header--find-movie">
                 <nav className="header--find-movie-nav">
                     <form className="find-movie-form" name="find-movie-form" action="#" method="POST">
                         <ul className="navigation">

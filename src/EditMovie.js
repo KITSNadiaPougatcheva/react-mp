@@ -1,47 +1,26 @@
 import React from 'react';
+import EditMovieBtn from "./EditMovieBth"
+import ModalWithButton from "./ModalWithButton"
 
-class EditMovie extends React.Component {
+class EditMovie extends React.PureComponent {
     state = {
-        activeState: 'wrapper edit-movie inactive'
+        isOpen: false
     }
-
-    hideModal = (event) => {
+    hideModal = event => {
         event.preventDefault();
-        console.log('Hide "Edit movie" form')
-        this.setState({activeState: 'wrapper edit-movie inactive'});
+        this.setState({isOpen: false});
     }
-
-    componentDidMount() {
-        const that = this
-        const showModal = (event) => {
-            event.preventDefault();
-            console.log('Show "Edit movie" form')
-            this.setState({activeState: 'wrapper edit-movie active'});
-        }
-
-        const elements = document.getElementsByClassName("movie--edit");
-        for(const elem of elements) {
-            elem.addEventListener("click", showModal);
-        }
-    }
+    openModal = () => this.setState({isOpen: true});
 
     render() {
         return (
-            <div className={this.state.activeState} >
-            <div className="form-content">
-                <h2 className="active">Edit movie</h2>
-                <form className="movie-form" name="edit-movie-form" action="#" method="POST">
+            <>
+                <EditMovieBtn openModal={this.openModal}/>
+                <ModalWithButton isOpen={this.state.isOpen} hideModal={this.hideModal} title="Edit Movie">
                     <input type="text" required name="name" placeholder="name"/>
                     <input type="text" required name="description" placeholder="description"/>
-                    <input type="button"  className="fadeIn fourth cancel" value="Cancel"
-                        onClick={e => this.hideModal(e)}
-                    />
-                    <input type="submit"  className="fadeIn fourth submit" value="Save"
-                        onClick={e => this.hideModal(e)}
-                    />
-                </form>
-            </div>
-            </div>
+                </ModalWithButton>
+            </>
         );
     }
 }
