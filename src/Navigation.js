@@ -1,15 +1,25 @@
 import React from 'react';
-import Header from './Header';
 import MenuItem from './MenuItem';
 
 import menu from './menu';
 
 class Navigation extends React.Component {
+    state = { menu }
+
     render() {
+        const { menu } = this.state;
+
         return (
-            <Header>
-                {menu.map(item => <MenuItem href={item.href} text={item.title} key={item.id}/>)}
-            </Header>    
+            <section className="navigation">
+                <div className="navigation">
+                    <nav className="header--navigation">
+                        <ul className="navigation">
+                            {menu.map(item => <MenuItem id={item.id} className={item.id} href={item.href} text={item.title} key={item.id} title={item.tooltip ?? item.title}/>)}
+                        </ul>
+                    </nav>
+                    {this.props.children}
+                </div>
+            </section>
         );
     }
 }
