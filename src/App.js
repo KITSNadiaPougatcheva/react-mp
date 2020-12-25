@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './style.css';
 import Navigation from './Navigation';
@@ -6,32 +6,26 @@ import MovieGallery from './MovieGallery';
 import Footer from './Footer';
 import SortBy from './SortBy';
 import Header from './Header';
+import MovieDetails from './MovieDetails'
+function App (props) {
 
-class App extends React.Component {
+    const [movieQuery, setMovieQuery] = useState('')
+    const [sorting, sortBy] = useState('none')
 
-    state = {
-        sorting: 'none'
-    }
+    return (
+        <>
+            <Header findMovie={setMovieQuery}/>
+            <Navigation >
+                <SortBy sortBy={sortBy}/>
+            </Navigation>
+            
+            <main>
+                <MovieGallery sortBy={sorting} movieQuery={movieQuery}/>
+            </main>
+            <Footer/>
+        </>
+    );
     
-    sortBy = () => {
-        this.setState({sorting: this.state.sorting === 'Rating' ? 'Alphabet' : 'Rating' });
-        console.log('Sorting...');
-    }
-
-    render() {
-        return (
-            <>
-                <Header/>
-                <Navigation>
-                    <SortBy onSelect={this.sortBy}/>
-                </Navigation>
-                <main>
-                    <MovieGallery showList sortBy={this.state.sorting}/>
-                </main>
-                <Footer/>
-            </>
-        );
-    }
 }
 
 export default App;

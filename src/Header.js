@@ -10,7 +10,7 @@ class Header extends React.Component {
                     <Logo/>
                     <AddMovie/>
                 </div>
-                <FindMovie/>
+                <FindMovie findMovie={this.props.findMovie}/>
                 <div className="header-bottom"></div>
             </header>
         );
