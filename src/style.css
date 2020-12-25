@@ -602,22 +602,8 @@ div.portfolio--images {
 	opacity: 0.5;
 }
 
-.movie--title {
+.movie-card-content {
 	color: #ffffff;
-}
-
-.movie--description {
-	color: #ffffff;
-}
-
-.movie--edit {
-	color: #ffffff;
-	cursor: pointer;
-}
-
-.movie--delete {
-	color: #ffffff;
-	cursor: pointer;
 }
 
 .portfolio-bottom {

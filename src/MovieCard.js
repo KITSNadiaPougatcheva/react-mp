@@ -10,10 +10,11 @@ function MovieCard(props) {
     // throw new Error('My Test Error')
 
     return (
-        <div>
+        <div className="movie-card-content">
             <img src={props.details.img} alt={props.details.title} onClick={() => setState(true)}/>
             <MovieDetails isOpen={state} hideDetails={() => setState(false)} details={props.details}/>
             <h3 className="movie--title">{props.details.title}</h3>
+            <p className="movie--rating">Rating : {props.details.range}</p>
             <p className="movie--description">{props.details.genre}</p>
             <EditMovie/>
             <DeleteMovie/>

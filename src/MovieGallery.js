@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ErrorBoundaries from './ErrorBoundaries';
-import MovieList from './MovieList0';
+import MovieList from './MovieList';
 
 class MovieGallery extends React.Component {
     render() {

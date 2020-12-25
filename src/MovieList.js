@@ -18,13 +18,12 @@ function MovieList(props) {
     const [movies, setMovies] = useState(MovieService.getMovies());
 
     useEffect(() => {
-        console.log('Use effect...')
-        const filteresList = sort(MovieService.getMovies(), props.sortBy).filter(movie => 
-            {
-                return !props.movieQuery || movie.title.toLowerCase().includes(props.movieQuery.toLowerCase())
-            })
+        console.log('Use effect...');
+        const filteresList = sort(MovieService.getMovies(), props.sortBy).filter(movie => {
+                return !props.movieQuery || movie.title.toLowerCase().includes(props.movieQuery.toLowerCase());
+        });
         setMovies(filteresList);
-    }, [props.sortBy, props.movieQuery])
+    }, [props.sortBy, props.movieQuery]);
     console.log('Rendering... by sorting', props.sortBy)
     return (
         <>

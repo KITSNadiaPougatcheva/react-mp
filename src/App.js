@@ -6,8 +6,8 @@ import MovieGallery from './MovieGallery';
 import Footer from './Footer';
 import SortBy from './SortBy';
 import Header from './Header';
-import MovieDetails from './MovieDetails'
-function App (props) {
+
+function App () {
 
     const [movieQuery, setMovieQuery] = useState('')
     const [sorting, sortBy] = useState('none')
