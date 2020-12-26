@@ -5,13 +5,14 @@ import MovieService from "./MovieService"
 
 const sort = (movieList, sortBy) => {
     console.log('MovieList sorting by ', sortBy)
-    movieList.sort((a1, a2) => {
+    const sortedList = [...movieList];
+    sortedList.sort((a1, a2) => {
         if (sortBy === 'Rating') {
             return a2.range - a1.range;
         }
         return a1.title.localeCompare(a2.title);
     })
-    return [...movieList];
+    return sortedList;
 }
 
 function MovieList(props) {
