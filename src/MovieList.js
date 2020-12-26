@@ -1,35 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MovieCard from './MovieCard';
+import MovieService from "./MovieService"
 
-import {default as movies} from "./movies";
-class MovieList extends React.Component {
-    state = {
-        movies
-    }
+const sort = (movieList, sortBy) => {
+    console.log('MovieList sorting by ', sortBy)
+    const sortedList = [...movieList];
+    sortedList.sort((a1, a2) => {
+        if (sortBy === 'Rating') {
+            return a2.range - a1.range;
+        }
+        return a1.title.localeCompare(a2.title);
+    })
+    return sortedList;
+}
 
-    componentDidMount() {
-        this.setState({ movies })
-    }
+function MovieList(props) {
+    const [movies, setMovies] = useState(MovieService.getMovies());
 
-    sort = (movieList, sortBy) => {
-        movieList.sort((a1, a2) => {
-            if (sortBy === 'Rating') {
-                return a2.range - a1.range;
-            }
-            return a1.title.localeCompare(a2.title);
-        })
-        return movieList;
-    }
-
-    render() {
-        return (
-            <>
-                {this.sort(this.state.movies, this.props.sortBy).map((movie) => 
-                    (<MovieCard title={movie.title} description={movie.description} img={movie.img} key={movie.id}/>))}
-            </>
-        );
-    }
+    useEffect(() => {
+        console.log('Use effect...');
+        const filteresList = sort(MovieService.getMovies(), props.sortBy).filter(movie => {
+                return !props.movieQuery || movie.title.toLowerCase().includes(props.movieQuery.toLowerCase());
+        });
+        setMovies(filteresList);
+    }, [props.sortBy, props.movieQuery]);
+    console.log('Rendering... by sorting', props.sortBy)
+    return (
+        <>
+            {movies.map((movie) => 
+                (<MovieCard details={movie} key={movie.id}/>))}
+        </>
+    );
 }
 
 export default MovieList;
