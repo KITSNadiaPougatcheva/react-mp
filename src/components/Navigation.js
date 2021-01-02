@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuItem from './MenuItem';
 
-import menu from './menu';
+import menu from '../data/menu';
 
 class Navigation extends React.Component {
     state = { menu }

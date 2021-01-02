@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import MovieCard from './MovieCard';
-import MovieService from "./MovieService"
+import MovieService from "../services/MovieService"
 
 const sort = (movieList, sortBy) => {
     console.log('MovieList sorting by ', sortBy)
