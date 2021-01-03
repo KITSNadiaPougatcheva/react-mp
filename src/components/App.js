@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 
 import '../style.css';
@@ -9,31 +8,48 @@ import Footer from './Footer';
 import SortBy from './SortBy';
 import Header from './Header';
 
-const roortReducer = function(state, action) {
-    // reducer body
-}
+import store from "../store"
 
-const store = createStore(roortReducer)
+class App extends React.Component {
 
-function App () {
+    state = {
+        movieQuery: '',
+        sorting: ''
+    }
 
-    const [movieQuery, setMovieQuery] = useState('')
-    const [sorting, sortBy] = useState('')
+    handleSetQuery = movieQuery => {
+        this.setState({
+            movieQuery
+        })
+    }
+
+    handleSetSorting = sorting => {
+        this.setState({
+            sorting
+        })
+    }
+
+    getState = () => this.state;
+
+    render() {
+
+        const st = {store}
 
     return (
         <Provider store={store}>
-            <Header findMovie={setMovieQuery} />
+            <Header findMovie={this.handleSetQuery} />
             <Navigation >
-                <SortBy sortBy={sortBy}/>
+                <SortBy sortBy={this.handleSetSorting}/>
             </Navigation>
             
             <main>
-                <MovieGallery sortBy={sorting} movieQuery={movieQuery}/>
+                <MovieGallery sortBy={this.state.sorting} movieQuery={this.state.movieQuery}/>
             </main>
             <Footer/>
         </Provider>
     );
     
+}
 }
 
 export default App;
