@@ -1,51 +1,51 @@
 export default [
     {
         "title": "Pulp Fiction",
-        "short_description": "by Quentin Tarantino",
-        "description": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.",
-        "img": "./m1.png",
+        "tagline": "by Quentin Tarantino",
+        "overview": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.",
+        "poster_path": "./m1.png",
         "id": "00001",
-        "range": 4,
-        "year": "1994",
-        "genre": "Action & Adventure"
+        "vote_average": 4,
+        "release_date": "1994",
+        "genres": ["Action & Adventure"]
     },
     {
         "title": "Bohemian rapsody",
-        "img": "./m2.png",
+        "poster_path": "./m2.png",
         "id": "00002",
-        "range": 4,
-        "year": "2018",
-        "genre": "Drama"
+        "vote_average": 4,
+        "release_date": "2018",
+        "genres": ["Drama"]
     },
     {
         "title": "Kill Bill",
-        "short_description": "by Quentin Tarantino",
-        "description": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.",
-        "img": "./m3.png",
-        "range": 5,
-        "year": "2004",
+        "tagline": "by Quentin Tarantino",
+        "overview": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.",
+        "poster_path": "./m3.png",
+        "vote_average": 5,
+        "release_date": "2004",
         "id": "00003"
     },
     {
         "title": "Avengers",
-        "img": "./m4.png",
-        "range": 1,
-        "year": "2015",
+        "poster_path": "./m4.png",
+        "vote_average": 1,
+        "release_date": "2015",
         "id": "00004"
     },
     {
         "title": "Inception",
-        "img": "./m5.png",
-        "range": 2,
-        "year": "1994",
+        "poster_path": "./m5.png",
+        "vote_average": 2,
+        "release_date": "1994",
         "id": "00005"
     },
     {
         "title": "Reservoir dogs",
-        "img": "./m6.png",
-        "range": 3,
-        "year": "1994",
-        "description": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.",
+        "poster_path": "./m6.png",
+        "vote_average": 3,
+        "release_date": "1994",
+        "overview": "Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.",
         "id": "00006"
     }
 ]

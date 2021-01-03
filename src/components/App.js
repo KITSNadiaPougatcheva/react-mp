@@ -10,46 +10,24 @@ import Header from './Header';
 
 import store from "../store"
 
-class App extends React.Component {
-
-    state = {
-        movieQuery: '',
-        sorting: ''
-    }
-
-    handleSetQuery = movieQuery => {
-        this.setState({
-            movieQuery
-        })
-    }
-
-    handleSetSorting = sorting => {
-        this.setState({
-            sorting
-        })
-    }
-
-    getState = () => this.state;
-
-    render() {
-
-        const st = {store}
+function App () {
+    const [movieQuery, setMovieQuery] = useState('')
+    const [sorting, sortBy] = useState('')
 
     return (
         <Provider store={store}>
-            <Header findMovie={this.handleSetQuery} />
+            <Header findMovie={setMovieQuery} />
             <Navigation >
-                <SortBy sortBy={this.handleSetSorting}/>
-            </Navigation>
-            
+                <SortBy sortBy={sortBy}/>
+            </Navigation>            
             <main>
-                <MovieGallery sortBy={this.state.sorting} movieQuery={this.state.movieQuery}/>
+                <MovieGallery sortBy={sorting} movieQuery={movieQuery}/>
             </main>
             <Footer/>
         </Provider>
     );
     
 }
-}
+
 
 export default App;

@@ -1,7 +1,8 @@
 import { ADD_MOVIE, GET_MOVIES } from "../constants"
 import movies from "../data/movies"
+import MovieService from "../services/MovieService"
 
-const moviesReducer = (state = { movies }, action) => {
+const moviesReducer = (state = { movies: MovieService.getMovies() }, action) => {
     switch (action.type) {
         case ADD_MOVIE :
             return {

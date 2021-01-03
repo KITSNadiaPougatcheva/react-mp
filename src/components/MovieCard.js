@@ -17,7 +17,7 @@ function MovieCard(props) {
             <MovieDetails isOpen={state} hideDetails={callbackHideDetails} details={props.details}/>
             <h3 className="movie--title">{props.details.title}</h3>
             <p className="movie--rating">Rating : {props.details.vote_average}</p>
-            <p className="movie--description">{props.details.genres.join(",")}</p>
+            <p className="movie--description">{props.details.genres && props.details.genres.join(",")}</p>
             <EditMovie details={props.details}/>
             <DeleteMovie details={props.details}/>
         </div> 

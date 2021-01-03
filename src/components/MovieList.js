@@ -10,9 +10,8 @@ function MovieList(props) {
     useEffect(() => {
        
         console.log('Use effect ... for', sortBy, movieQuery);
-        // MovieService.findMovies({sortBy, movieQuery}).then(list => 
-        //     setMovies(list)
-        // );
+        const list = MovieService.findMovies({sortBy, movieQuery});
+        setMovies([...list]);
     }, [sortBy, movieQuery]);
 
     console.log('Rendering... by sorting', props.sortBy, 'movies length = ', movies.length)
