@@ -25,9 +25,9 @@ class AddMovie extends React.PureComponent {
         event.preventDefault();
         this.setState({ ...this.state, isOpen: false});
         const title = this.titleRef.current.value;
-        const description = this.descrRef.current.value;
-        console.log('Add movie ...', title, ',', description)
-        MovieService.addMovie({id: v1(), title, description})
+        const overview = this.descrRef.current.value;
+        console.log('Add movie ...', title, ',', overview)
+        MovieService.addMovie({ title, overview })
     }
 
     openModal = () => this.setState({ ...this.state, isOpen: true});

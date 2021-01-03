@@ -18,7 +18,7 @@ const store = createStore(roortReducer)
 function App () {
 
     const [movieQuery, setMovieQuery] = useState('')
-    const [sorting, sortBy] = useState('none')
+    const [sorting, sortBy] = useState('')
 
     return (
         <Provider store={store}>

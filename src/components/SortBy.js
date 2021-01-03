@@ -8,8 +8,8 @@ function SortBy(props) {
             <li>
                 <select className="header--sorting-selector" 
                 onChange={callback}>
-                    <option>Alphabet</option>
-                    <option>Rating</option>
+                    <option value="title">Alphabet</option>
+                    <option value="vote_average">Rating</option>
                 </select>
             </li>
         </ul>

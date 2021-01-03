@@ -5,12 +5,13 @@ import MovieList from './MovieList';
 
 class MovieGallery extends React.Component {
     render() {
+        const { sortBy, movieQuery } = this.props;
         return (
             <section className="portfolio" id="portfolio">
                 <div className="portfolio">
                     <div className="portfolio--images">
                         <ErrorBoundaries>
-                            <MovieList sortBy={this.props.sortBy} movieQuery={this.props.movieQuery}/>
+                            <MovieList sortBy={sortBy} movieQuery={movieQuery}/>
                         </ErrorBoundaries>
                     </div>
                 </div>

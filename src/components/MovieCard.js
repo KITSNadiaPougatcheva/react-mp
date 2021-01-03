@@ -13,13 +13,13 @@ function MovieCard(props) {
 
     return (
         <div className="movie-card-content">
-            <img src={props.details.img} alt={props.details.title} onClick={callbackOpenDetails}/>
+            <img src={props.details.poster_path} alt={props.details.title} onClick={callbackOpenDetails}/>
             <MovieDetails isOpen={state} hideDetails={callbackHideDetails} details={props.details}/>
             <h3 className="movie--title">{props.details.title}</h3>
-            <p className="movie--rating">Rating : {props.details.range}</p>
-            <p className="movie--description">{props.details.genre}</p>
-            <EditMovie/>
-            <DeleteMovie/>
+            <p className="movie--rating">Rating : {props.details.vote_average}</p>
+            <p className="movie--description">{props.details.genres.join(",")}</p>
+            <EditMovie details={props.details}/>
+            <DeleteMovie details={props.details}/>
         </div> 
     );
 }
