@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import DeleteMovieBtn from "./DeleteMovieBth"
 import ModalWithButton from "./ModalWithButton"
 import MovieService from "../services/MovieService"
 
+import { removeMovie } from "../actions/actionCreator";
 
 class DeleteMovie extends React.PureComponent {
     state = {
@@ -15,8 +18,12 @@ class DeleteMovie extends React.PureComponent {
     submit = event => {
         event.preventDefault();
         console.log(`Deleting movie #${this.props.details.id}`)
-        MovieService.deleteMovie(this.props.details.id)
+        
         this.setState({isOpen: false});
+
+        // MovieService.deleteMovie(this.props.details.id)
+        const { removeMovie } = this.props;
+        removeMovie(this.props.details.id)
     }
     openModal = () => this.setState({isOpen: true});
 
@@ -32,4 +39,6 @@ class DeleteMovie extends React.PureComponent {
     }
 }
 
-export default DeleteMovie;
+export default connect(state => ({
+    movies: state.movies
+}), { removeMovie })(DeleteMovie);

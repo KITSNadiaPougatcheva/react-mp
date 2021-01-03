@@ -1,11 +1,12 @@
 import React from 'react';
-import { connect } from 'react'
+import { connect } from 'react-redux'
 
 import ModalWithButton from "./ModalWithButton"
 import AddMovieBtn from "./AddMovieBtn"
 import MovieService from "../services/MovieService"
 import { v1 } from "uuid"
 
+import { addMovie } from "../actions/actionCreator";
 
 class AddMovie extends React.PureComponent {
     constructor(props) {
@@ -21,18 +22,24 @@ class AddMovie extends React.PureComponent {
         this.setState({ ...this.state, isOpen: false});
     }
 
+    
     submitAddMovie = event => {
         event.preventDefault();
         this.setState({ ...this.state, isOpen: false});
         const title = this.titleRef.current.value;
         const overview = this.descrRef.current.value;
         console.log('Add movie ...', title, ',', overview)
-        MovieService.addMovie({ title, overview })
+
+        const { addMovie } = this.props;
+        addMovie({ title, overview });
+
+       // MovieService.addMovie({ title, overview })
     }
 
     openModal = () => this.setState({ ...this.state, isOpen: true});
 
     render() {
+        
         return (
             <>
                 <AddMovieBtn openModal={this.openModal}/>
@@ -57,5 +64,8 @@ class AddMovie extends React.PureComponent {
 // }
 // export default connect(null, mapDispatchToProps)(AddMovie);
 
-export default AddMovie;
+// export default AddMovie;
+export default connect(state => ({
+    movies: state.movies
+}), { addMovie })(AddMovie);
  

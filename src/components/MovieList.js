@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from "react-redux";
 
 import MovieCard from './MovieCard';
 import MovieService from "../services/MovieService"
 
 function MovieList(props) {
-    const [movies, setMovies] = useState([]);
-    const { sortBy, movieQuery } = props;
+    // const [movies, setMovies] = useState([]);
+    const { sortBy, movieQuery, movies } = props;
 
-    useEffect(() => {
+    // useEffect(() => {
        
-        console.log('Use effect ... for', sortBy, movieQuery);
-        const list = MovieService.findMovies({sortBy, movieQuery});
-        setMovies([...list]);
-    }, [sortBy, movieQuery]);
+    //     console.log('Use effect ... for', sortBy, movieQuery);
+    //     const list = MovieService.findMovies({sortBy, movieQuery});
+    //     setMovies([...list]);
+    // }, [sortBy, movieQuery]);
 
-    console.log('Rendering... by sorting', props.sortBy, 'movies length = ', movies.length)
+    console.log('Rendering... by sorting', props.sortBy, 'movies.length = ', movies.length)
     return (
         <>
             {movies && movies.map((movie) => 
@@ -23,4 +24,7 @@ function MovieList(props) {
     );
 }
 
-export default MovieList;
+export default connect(state => ({
+    movies: state.movies,
+}))(MovieList);
+// MovieList;

@@ -1,8 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux'
+
 import EditMovieBtn from "./EditMovieBth"
 import ModalWithButton from "./ModalWithButton"
+import { editMovie } from "../actions/actionCreator";
 
 class EditMovie extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.titleRef = React.createRef();
+        this.descrRef = React.createRef();
+    }
     state = {
         isOpen: false
     }
@@ -11,18 +19,34 @@ class EditMovie extends React.PureComponent {
         this.setState({isOpen: false});
     }
     openModal = () => this.setState({isOpen: true});
+    submit = event => {
+        event.preventDefault();
+        console.log(`Editing movie #${this.props.details.id}`)
+        const title = this.titleRef.current.value;
+        const overview = this.descrRef.current.value;
+        
+        this.setState({isOpen: false});
+
+        // MovieService.editMovie(this.props.details.id)
+        const { editMovie } = this.props;
+        editMovie({ ...this.props.details, title, overview })
+    }
 
     render() {
         return (
             <>
                 <EditMovieBtn openModal={this.openModal}/>
-                <ModalWithButton isOpen={this.state.isOpen} hideModal={this.hideModal} title="Edit Movie">
-                    <input type="text" required name="name" placeholder="name"/>
-                    <input type="text" required name="description" placeholder="description"/>
+                <ModalWithButton isOpen={this.state.isOpen} hideModal={this.hideModal} submit={this.submit} title="Edit Movie">
+                    <input type="text" required name="name" defaultValue={this.props.details.title} ref={this.titleRef}/>
+                    <input type="text" required name="description" defaultValue={this.props.details.overview} ref={this.descrRef}/>
                 </ModalWithButton>
             </>
         );
     }
 }
 
-export default EditMovie;
+// export default EditMovie;
+export default connect(state => ({
+    movies: state.movies
+}), { editMovie })(EditMovie);
+
