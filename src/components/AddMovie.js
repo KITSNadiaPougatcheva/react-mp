@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import ModalWithButton from "./ModalWithButton"
 import AddMovieBtn from "./AddMovieBtn"
-import MovieService from "../services/MovieService"
-import { v1 } from "uuid"
 
 import { addMovie } from "../actions/actionCreator";
 
@@ -32,8 +30,6 @@ class AddMovie extends React.PureComponent {
 
         const { addMovie } = this.props;
         addMovie({ title, overview });
-
-       // MovieService.addMovie({ title, overview })
     }
 
     openModal = () => this.setState({ ...this.state, isOpen: true});
@@ -52,20 +48,7 @@ class AddMovie extends React.PureComponent {
     }
 }
 
-// const addMovie = newMovie => ({
-//     type: 'ADD_MOVIE',
-//     movie: newMovie
-// })
-
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         addMovieProp: newMovie => dispatch(addMovie(newMovie))
-//     }
-// }
-// export default connect(null, mapDispatchToProps)(AddMovie);
-
-// export default AddMovie;
 export default connect(state => ({
-    movies: state.movies
+    ...state
 }), { addMovie })(AddMovie);
  

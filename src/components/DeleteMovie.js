@@ -21,7 +21,6 @@ class DeleteMovie extends React.PureComponent {
         
         this.setState({isOpen: false});
 
-        // MovieService.deleteMovie(this.props.details.id)
         const { removeMovie } = this.props;
         removeMovie(this.props.details.id)
     }
@@ -40,5 +39,5 @@ class DeleteMovie extends React.PureComponent {
 }
 
 export default connect(state => ({
-    movies: state.movies
+    ...state
 }), { removeMovie })(DeleteMovie);

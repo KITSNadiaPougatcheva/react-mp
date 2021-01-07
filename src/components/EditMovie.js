@@ -27,7 +27,6 @@ class EditMovie extends React.PureComponent {
         
         this.setState({isOpen: false});
 
-        // MovieService.editMovie(this.props.details.id)
         const { editMovie } = this.props;
         editMovie({ ...this.props.details, title, overview })
     }
@@ -45,8 +44,7 @@ class EditMovie extends React.PureComponent {
     }
 }
 
-// export default EditMovie;
 export default connect(state => ({
-    movies: state.movies
+    ...state
 }), { editMovie })(EditMovie);
 

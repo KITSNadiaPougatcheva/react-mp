@@ -14,7 +14,9 @@ class Navigation extends React.Component {
                 <div className="navigation">
                     <nav className="header--navigation">
                         <ul className="navigation">
-                            {menu.map(item => <MenuItem id={item.id} className={item.id} href={item.href} text={item.title} key={item.id} title={item.tooltip ?? item.title}/>)}
+                            {menu.map(item => 
+                            <MenuItem id={item.id} className={item.id} href={item.href} 
+                            text={item.title} key={item.id} title={item.tooltip ?? item.title}/>)}
                         </ul>
                     </nav>
                     {this.props.children}

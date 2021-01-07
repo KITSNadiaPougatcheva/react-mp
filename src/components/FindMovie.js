@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { findMovies } from "../actions/actionCreator";
 
 class FindMovie extends React.Component {
     constructor(props) {
@@ -9,7 +11,7 @@ class FindMovie extends React.Component {
         e.preventDefault();
         const queryInput = this.queryRef.current;
         console.log('Find movie ... by', queryInput.value)
-        this.props.findMovie(queryInput.value);
+        this.props.findMovies(queryInput.value);
     }
     render() {
         return (
@@ -28,4 +30,6 @@ class FindMovie extends React.Component {
     }
 }
 
-export default FindMovie;
+export default connect(state => ({
+    ...state
+}), { findMovies })(FindMovie);

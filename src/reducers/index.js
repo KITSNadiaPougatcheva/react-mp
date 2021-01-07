@@ -1,27 +1,11 @@
-import { combineReducers } from "redux"
+// import { combineReducers } from "redux"
 import moviesReducer from "./movies";
 
-const rootReducer = combineReducers({ 
-    movies: moviesReducer 
-}
-);
+// const rootReducer = combineReducers({ 
+//     movies: moviesReducer.movies,
+//     genre: moviesReducer.genre,
+//     query: moviesReducer.query,
+//     sortBy: moviesReducer.sortBy,
+// });
 
-
-
-// const rootReducer = function(state = initialState, action) {
-//     switch (action.type) {
-//         case 'UPDATE_MOVIE': 
-//             return {
-//                 ...state,
-//                 movies: [...state.movies, action.payload]
-//             }
-//         case 'DELETE_MOVIE':
-//             return {
-
-//             }
-//         default:
-//             return state;
-//     }
-// }
-
-export default rootReducer;
+export default moviesReducer;

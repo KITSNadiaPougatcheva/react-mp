@@ -1,13 +1,31 @@
 import React, { useCallback } from 'react';
+import { connect } from 'react-redux'
 
-function SortBy(props) {
-    const callback = useCallback(e => props.sortBy(e.currentTarget.value))
+import { sortMovies } from "../actions/actionCreator";
+
+
+class SortBy extends React.Component {
+    constructor(props) {
+        super(props);
+        this.sortByRef = React.createRef();
+    }
+
+    // const callback = useCallback(e => props.sortBy(e.currentTarget.value))
+    sortBySubmit = e => {
+        e.preventDefault();
+        const sortBy = this.sortByRef.current.value;
+        console.log('Sort movie ... by', sortBy);
+        this.props.sortMovies(sortBy);
+    }
+
+    render() {
     return (
         <ul className="header--sorting">
             <li>Sort by </li>
             <li>
-                <select className="header--sorting-selector" 
-                onChange={callback}>
+                <select className="header--sorting-selector" ref={this.sortByRef}
+                onChange={this.sortBySubmit}>
+                    <option value="">--Please choose an option--</option>
                     <option value="title">Alphabet</option>
                     <option value="vote_average">Rating</option>
                 </select>
@@ -15,5 +33,10 @@ function SortBy(props) {
         </ul>
     );
 }
+}
 
-export default SortBy;
+//export default SortBy;
+export default connect(state => ({
+    ...state
+}), { sortMovies })(SortBy);
+
