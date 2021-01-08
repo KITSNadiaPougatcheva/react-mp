@@ -1,4 +1,18 @@
-import { ADD_MOVIE, REMOVE_MOVIE, EDIT_MOVIE, FIND_MOVIES, FILTER_MOVIES, SORT_MOVIES } from "../constants"
+import { ADD_MOVIE, REMOVE_MOVIE, EDIT_MOVIE, FIND_MOVIES, FILTER_MOVIES, 
+    SORT_MOVIES, GET_MOVIES, MOVIES_LOADED } from "../constants"
+
+export const moviesLoaded = () => ({
+    type: MOVIES_LOADED,
+    movies,
+    query,
+    sortBy,
+    genre
+})
+
+export const getMovies = () => ({
+    type: GET_MOVIES,
+})
+
 
 export const addMovie = ({ title, overview }) => ({
     type: ADD_MOVIE,
@@ -18,7 +32,7 @@ export const editMovie = movie => ({
 
 export const findMovies = query => ({
     type: FIND_MOVIES,
-    query, 
+    query,
 })
 
 export const filterMovies = genre => ({

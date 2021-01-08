@@ -16,9 +16,12 @@ class MenuItem extends React.Component{
     }
 
     render() {
+        const { genre: selectedGenre } = this.props;
         return (
             <li>
-                <a id={this.props.id} data-value={this.props.text} onClick={this.filterMovieSubmit} ref={this.filterRef} href={this.props.href}>{this.props.text}</a>
+                <a id={this.props.id} data-value={this.props.text} 
+                className={ selectedGenre === this.props.text ? 'selected' : '' }
+                onClick={this.filterMovieSubmit} ref={this.filterRef} href={this.props.href}>{this.props.text}</a>
             </li>)
     }
 }

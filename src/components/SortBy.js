@@ -26,7 +26,7 @@ class SortBy extends React.Component {
                 <select className="header--sorting-selector" ref={this.sortByRef}
                 onChange={this.sortBySubmit}>
                     <option value="">--Please choose an option--</option>
-                    <option value="title">Alphabet</option>
+                    <option value="release_date">Release date</option>
                     <option value="vote_average">Rating</option>
                 </select>
             </li>

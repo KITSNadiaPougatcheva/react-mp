@@ -27,8 +27,8 @@ class EditMovie extends React.PureComponent {
         
         this.setState({isOpen: false});
 
-        const { editMovie } = this.props;
-        editMovie({ ...this.props.details, title, overview })
+        const { onEditMovie } = this.props;
+        onEditMovie({ ...this.props.details, title, overview })
     }
 
     render() {
@@ -44,7 +44,12 @@ class EditMovie extends React.PureComponent {
     }
 }
 
-export default connect(state => ({
-    ...state
-}), { editMovie })(EditMovie);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onEditMovie: movie => dispatch(editMovie(movie))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(EditMovie);
 

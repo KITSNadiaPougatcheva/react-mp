@@ -1,21 +1,41 @@
-import { compose, createStore } from "redux"
+import { createStore, applyMiddleware } from "redux"
 import rootReducer from "./reducers/index"
+import { composeWithDevTools } from 'redux-devtools-extension'
+import {
+    getMoviesMiddleware,
+    findMoviesMiddleware,
+    filterMoviesMiddleware,
+    sortMoviesMiddleware,
+    addMovieMiddleware,
+    deleteMovieMiddleware,
+    updateMovieMiddleware
+} from './middlewares'
 
-const composeEnhancers =
-    process.env.NODE_ENV !== "production" &&
-    typeof window === "object" &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? 
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) : compose;
+const composeEnhancers = composeWithDevTools(applyMiddleware(
+        getMoviesMiddleware, findMoviesMiddleware, filterMoviesMiddleware,
+        sortMoviesMiddleware, addMovieMiddleware, deleteMovieMiddleware,
+        updateMovieMiddleware
+    ));
 
-const configureStore = preloadState => {
+const preloadedState = {
+    // movies: MovieService.getMovies()
+  }
+
+const configureStore = () => {
     return createStore(
         rootReducer,
-        preloadState,
-        composeEnhancers(),
+        preloadedState,
+        composeEnhancers,
     )
 };
 
-const store = configureStore({});
+const store = configureStore();
+
+const unsubscribe = store.subscribe(() =>
+  console.log('Initial state: ', store.getState())
+)
+store.dispatch({ type: 'GET_MOVIES' })
+unsubscribe()
 
 export default store;
 

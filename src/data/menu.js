@@ -24,4 +24,15 @@ export default [
         "href": "#Family",
         "id": "menu00005"
     },
+    {
+        "title": "Comedy",
+        "href": "#Comedy",
+        "id": "menu00006"
+    },
+    {
+        "title": "Fantasy",
+        "href": "#Fantasy",
+        "id": "menu00007"
+    },
+   
 ]
