@@ -8,8 +8,8 @@ function MovieCard(props) {
     const [state, setState] = useState(false);
     
     // throw new Error('My Test Error')
-    const callbackOpenDetails = useCallback(() => setState(true));
-    const callbackHideDetails = useCallback(() => setState(false));
+    const callbackOpenDetails = useCallback(() => setState(true), []);
+    const callbackHideDetails = useCallback(() => setState(false), []);
 
     return (
         <div className="movie-card-content">

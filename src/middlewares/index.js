@@ -1,22 +1,9 @@
 import { ADD_MOVIE, REMOVE_MOVIE, EDIT_MOVIE, FIND_MOVIES, FILTER_MOVIES, SORT_MOVIES, GET_MOVIES, MOVIES_LOADED } from "../constants"
 import MovieService from "../services/MovieService"
 
-export const delayedActionMiddleware = storeAPI => next => action => {
-    if (action.type === 'todos/todoAdded') {
-      setTimeout(() => {
-        // Delay this action by one second
-        next(action)
-      }, 1000)
-      return
-    }
-  
-    return next(action)
-  }
-  
 export const getMoviesMiddleware = storeAPI => next => action => {
     const { dispatch, getState } = storeAPI;
     if (action.type === GET_MOVIES) {
-      // Make an API call to fetch todos from the server
       console.log('Async call to API for GET_MOVIES action')
       MovieService.getMoviesAsync()
         .then(movies => {
@@ -31,7 +18,6 @@ export const findMoviesMiddleware = storeAPI => next => action => {
     const { dispatch, getState } = storeAPI;
     const { genre, sortBy } = getState();
     if (action.type === FIND_MOVIES) {
-      // Make an API call to fetch todos from the server
       console.log('Async call to API for FIND_MOVIES action by query =', action.query)
       MovieService.findMoviesAsync({ query: action.query, genre, sortBy })
         .then(movies => {
@@ -46,7 +32,6 @@ export const filterMoviesMiddleware = storeAPI => next => action => {
     const { dispatch, getState } = storeAPI;
     const { query, sortBy } = getState();
     if (action.type === FILTER_MOVIES) {
-        // Make an API call to fetch todos from the server
         console.log('Async call to API for FILTER_MOVIES action by gernre =', action.genre)
         MovieService.findMoviesAsync({ query, genre: action.genre, sortBy })
         .then(movies => {
@@ -110,7 +95,6 @@ export const updateMovieMiddleware = storeAPI => next => action => {
       const { movie: movieDetails } = action
       console.log('Async call to API for EDIT_MOVIE action, movie =', movieDetails)
       MovieService.updateMovieAsync(movieDetails)
-        //.then(() => MovieService.updateMoviesAsync({ id, title, overview }))
         .then(movie => {
             dispatch({ type: MOVIES_LOADED, movies: [movie], genre, query, sortBy })
         })

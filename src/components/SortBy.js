@@ -3,14 +3,12 @@ import { connect } from 'react-redux'
 
 import { sortMovies } from "../actions/actionCreator";
 
-
 class SortBy extends React.Component {
     constructor(props) {
         super(props);
         this.sortByRef = React.createRef();
     }
 
-    // const callback = useCallback(e => props.sortBy(e.currentTarget.value))
     sortBySubmit = e => {
         e.preventDefault();
         const sortBy = this.sortByRef.current.value;

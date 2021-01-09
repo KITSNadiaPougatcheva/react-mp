@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 
 import DeleteMovieBtn from "./DeleteMovieBth"
 import ModalWithButton from "./ModalWithButton"
-import MovieService from "../services/MovieService"
 
 import { removeMovie } from "../actions/actionCreator";
 

@@ -1,11 +1,20 @@
-// import { combineReducers } from "redux"
-import moviesReducer from "./movies";
+import { MOVIES_LOADED } from "../constants"
 
-// const rootReducer = combineReducers({ 
-//     movies: moviesReducer.movies,
-//     genre: moviesReducer.genre,
-//     query: moviesReducer.query,
-//     sortBy: moviesReducer.sortBy,
-// });
+const moviesReducer = (state = {}, action) => {
+    const { sortBy, genre, query } = state;
+    console.log('Reducer previous state :', state, 'ACTION :', action);
+    switch (action.type) {
+        case MOVIES_LOADED :
+            return { 
+                movies: action.movies, 
+                genre: action.genre || genre, 
+                sortBy: action.sortBy || sortBy, 
+                query: action.query || query 
+            };
+
+        default: 
+            return state;
+    }
+}
 
 export default moviesReducer;
