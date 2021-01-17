@@ -1,0 +1,37 @@
+import React from 'react';
+import { connect } from 'react-redux'
+import { filterMoviesAsync } from "../actions/actionCreator";
+
+class MenuItem extends React.Component{
+    constructor(props) {
+        super(props);
+        this.filterRef = React.createRef();
+    }
+
+    filterMovieSubmit = e => {
+        e.preventDefault();
+        const filter = this.filterRef.current.getAttribute("data-value");
+        console.log('Filter movie ... by', filter)
+        this.props.onFilterMovie(filter);
+    }
+
+    render() {
+        const { genre: selectedGenre } = this.props;
+        return (
+            <li>
+                <a id={this.props.id} data-value={this.props.text} 
+                className={ selectedGenre === this.props.text ? 'selected' : '' }
+                onClick={this.filterMovieSubmit} ref={this.filterRef} href={this.props.href}>{this.props.text}</a>
+            </li>)
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFilterMovie: genre => dispatch(filterMoviesAsync({ payload: { genre } }))
+    }
+}
+
+export default connect(({ genre }) => ({
+    genre
+}), mapDispatchToProps)(MenuItem);

@@ -1,31 +1,33 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux'
 
-import './style.css';
+import '../style.css';
 import Navigation from './Navigation';
 import MovieGallery from './MovieGallery';
 import Footer from './Footer';
 import SortBy from './SortBy';
 import Header from './Header';
 
-function App () {
+import store from "../store"
 
+function App () {
     const [movieQuery, setMovieQuery] = useState('')
-    const [sorting, sortBy] = useState('none')
+    const [sorting, sortBy] = useState('')
 
     return (
-        <>
-            <Header findMovie={setMovieQuery}/>
+        <Provider store={store}>
+            <Header findMovie={setMovieQuery} />
             <Navigation >
                 <SortBy sortBy={sortBy}/>
-            </Navigation>
-            
+            </Navigation>            
             <main>
                 <MovieGallery sortBy={sorting} movieQuery={movieQuery}/>
             </main>
             <Footer/>
-        </>
+        </Provider>
     );
     
 }
+
 
 export default App;
