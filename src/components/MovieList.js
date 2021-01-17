@@ -14,6 +14,6 @@ function MovieList(props) {
     );
 }
 
-export default connect(state => ({
-    ...state,
+export default connect(({ movies }) => ({
+    movies,
 }))(MovieList);

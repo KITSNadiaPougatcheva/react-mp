@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import DeleteMovieBtn from "./DeleteMovieBth"
 import ModalWithButton from "./ModalWithButton"
 
-import { removeMovie } from "../actions/actionCreator";
+import { deleteMovieAsync } from "../actions/actionCreator";
 
 class DeleteMovie extends React.PureComponent {
     state = {
@@ -20,8 +20,8 @@ class DeleteMovie extends React.PureComponent {
         
         this.setState({isOpen: false});
 
-        const { removeMovie } = this.props;
-        removeMovie(this.props.details.id)
+        const { ondeleteMovie } = this.props;
+        ondeleteMovie(this.props.details.id)
     }
     openModal = () => this.setState({isOpen: true});
 
@@ -37,6 +37,11 @@ class DeleteMovie extends React.PureComponent {
     }
 }
 
-export default connect(state => ({
-    ...state
-}), { removeMovie })(DeleteMovie);
+const mapDispatchToProps = dispatch => {
+    return {
+        ondeleteMovie: id => dispatch(deleteMovieAsync({ payload: { id } }))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(DeleteMovie);
+

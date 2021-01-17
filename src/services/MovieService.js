@@ -137,7 +137,7 @@ const MovieService = {
 
     updateMovieAsync: movie => {
         const url = `${BASE_PATH}${MOVIES_PATH}`;
-        console.log('Looking for movies : ', url);
+        console.log('Updating movie for movies : PUT ', url, 'body :' , movie);
         return fetch(url, { 
             method: "PUT",
             headers: {
@@ -149,7 +149,7 @@ const MovieService = {
             if (!res.ok) {
                 const msg = `Error ${res.status} ${res.statusText}`
                 console.error(msg)
-                res.json().then(errData => console.error('ERROR', errData))
+                res.json().then(errData => console.error('ERROR updating movie', errData, 'payload', movie))
                 throw new Error(msg)
             }
             return res.json()

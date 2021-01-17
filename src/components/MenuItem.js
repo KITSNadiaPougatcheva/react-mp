@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { filterMovies } from "../actions/actionCreator";
+import { filterMoviesAsync } from "../actions/actionCreator";
 
 class MenuItem extends React.Component{
     constructor(props) {
@@ -12,7 +12,7 @@ class MenuItem extends React.Component{
         e.preventDefault();
         const filter = this.filterRef.current.getAttribute("data-value");
         console.log('Filter movie ... by', filter)
-        this.props.filterMovies(filter);
+        this.props.onFilterMovie(filter);
     }
 
     render() {
@@ -26,6 +26,12 @@ class MenuItem extends React.Component{
     }
 }
 
-export default connect(state => ({
-    ...state
-}), { filterMovies })(MenuItem);
+const mapDispatchToProps = dispatch => {
+    return {
+        onFilterMovie: genre => dispatch(filterMoviesAsync({ payload: { genre } }))
+    }
+}
+
+export default connect(({ genre }) => ({
+    genre
+}), mapDispatchToProps)(MenuItem);

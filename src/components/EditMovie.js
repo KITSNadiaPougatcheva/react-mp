@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import EditMovieBtn from "./EditMovieBth"
 import ModalWithButton from "./ModalWithButton"
-import { editMovie } from "../actions/actionCreator";
+import { editMovieAsync } from "../actions/actionCreator";
 
 class EditMovie extends React.PureComponent {
     constructor(props) {
@@ -44,12 +44,10 @@ class EditMovie extends React.PureComponent {
     }
 }
 
-
 const mapDispatchToProps = dispatch => {
     return {
-        onEditMovie: movie => dispatch(editMovie(movie))
+        onEditMovie: movie => dispatch(editMovieAsync({ payload: { movie } }))
     }
 }
 
 export default connect(null, mapDispatchToProps)(EditMovie);
-
