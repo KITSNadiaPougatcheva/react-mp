@@ -1,16 +1,8 @@
-import { MOVIES_LOADED, SORT_MOVIES_SELECTED, MOVIES_REFRESHED, 
+import { SORT_MOVIES_SELECTED, MOVIES_REFRESHED, 
     ERROR, QUERY_SELECTED, GENRE_SELECTED } from "../constants"
 
 import MovieService from "../services/MovieService"
 
-
-export const moviesLoaded = () => ({
-    type: MOVIES_LOADED,
-    movies,
-    query,
-    sortBy,
-    genre
-})
 
 export const addMovieAsync = ({ payload: { movie } }) => {
     return dispatch => {

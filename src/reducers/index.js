@@ -1,7 +1,6 @@
-import { MOVIES_LOADED, SORT_MOVIES_SELECTED, MOVIES_REFRESHED, QUERY_SELECTED, ERROR, GENRE_SELECTED } from "../constants"
+import { SORT_MOVIES_SELECTED, MOVIES_REFRESHED, QUERY_SELECTED, ERROR, GENRE_SELECTED } from "../constants"
 
 const moviesReducer = (state = {}, action) => {
-    const { sortBy, genre, query } = state;
     console.log('Reducer previous state :', state, 'ACTION :', action);
     switch (action.type) {
         case GENRE_SELECTED: {
@@ -29,14 +28,6 @@ const moviesReducer = (state = {}, action) => {
                 ...state, movies: action.payload.movies
             }
         }
-        case MOVIES_LOADED :
-            return { 
-                movies: action.movies, 
-                genre: action.genre || genre, 
-                sortBy: action.sortBy || sortBy, 
-                query: action.query || query 
-            };
-
         default: 
             return state;
     }
