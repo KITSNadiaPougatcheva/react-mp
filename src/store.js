@@ -14,13 +14,11 @@ const composeEnhancers = composeWithDevTools(applyMiddleware(
 const configureStore = () => {
     return createStore(
         rootReducer,
-        {},
         composeEnhancers,
     )
 };
 
 const store = configureStore();
-store.dispatch(getAllMoviesAsync())
 
 export default store;
 

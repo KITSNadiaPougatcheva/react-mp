@@ -37,10 +37,8 @@ class DeleteMovie extends React.PureComponent {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        ondeleteMovie: id => dispatch(deleteMovieAsync({ payload: { id } }))
-    }
+const mapDispatchToProps = {
+    ondeleteMovie: deleteMovieAsync
 }
 
 export default connect(null, mapDispatchToProps)(DeleteMovie);

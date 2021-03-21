@@ -46,11 +46,9 @@ class AddMovie extends React.PureComponent {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onAddMovie: movie => dispatch(addMovieAsync({ payload: { movie } }))
-    }
-}
+const mapDispatchToProps = {
+    onAddMovie: addMovieAsync,
+};
 
 export default connect(null, mapDispatchToProps)(AddMovie);
 

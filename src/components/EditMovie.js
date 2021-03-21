@@ -44,10 +44,8 @@ class EditMovie extends React.PureComponent {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onEditMovie: movie => dispatch(editMovieAsync({ payload: { movie } }))
-    }
-}
+const mapDispatchToProps = {
+    onEditMovie: editMovieAsync,
+};
 
 export default connect(null, mapDispatchToProps)(EditMovie);
