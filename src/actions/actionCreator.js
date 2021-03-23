@@ -71,7 +71,7 @@ export const sortMoviesAsync = ({ payload: { sortBy } }) => {
     };
 };
 
-export const findMoviesAsync = ({ payload: { query } }) => {
+export const findMoviesAsync = query => {
     return (dispatch, getState) => {
       dispatch(findMoviesSelected(query));
       const { genre, sortBy } = getState();

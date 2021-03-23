@@ -8,21 +8,22 @@ import { editMovieAsync } from "../actions/actionCreator";
 
 class EditMovie extends React.PureComponent {
     state = {
+        ...this.props.details,
         isOpen: false
     }
-    hideModal = event => {
-        event.preventDefault();
-        this.setState({isOpen: false});
+    reset = () => {
+        this.setState({ ...this.props.details, isOpen: false });
     }
-    openModal = () => this.setState({isOpen: true});
+    openModal = () => this.setState({...this.props.details, isOpen: true});
     submit = values => {
         console.log(`Editing movie #${this.props.details.id}`)
         const title = values.title;
         const overview = values.overview;
-        this.setState({isOpen: false});
+        this.setState({ title, overview, isOpen: false });
         const { onEditMovie } = this.props;
         onEditMovie({ ...this.props.details, title, overview })
     }
+
     validate = values => {
         const errors = {};
          if (!values.title) {
@@ -38,14 +39,16 @@ class EditMovie extends React.PureComponent {
         return (
             <Formik initialValues={{ title: this.props.details.title, overview: this.props.details.overview, 
                 openModal: this.openModal, hideModal: this.hideModal}} 
-                onSubmit={this.submit} validate={this.validate}>
-                {({values, errors, handleChange, handleSubmit, handleBlur }) => (
+                onSubmit={this.submit} validate={this.validate} onReset={this.reset}>
+                {({values, errors, handleChange, handleSubmit, handleBlur, handleReset }) => (
                     <>
                         <EditMovieBtn openModal={values.openModal}/>
-                        <ModalWithButton isOpen={this.state.isOpen}  hideModal={values.hideModal} submit={handleSubmit} title="Edit Movie">
-                            <input type="text" required name="title" defaultValue={values.title} onChange={handleChange} onBlur={handleBlur}/>
+                        <ModalWithButton isOpen={this.state.isOpen}  hideModal={handleReset} submit={handleSubmit} title="Edit Movie">
+                            <input type="text" required name="title" value={values.title} onChange={handleChange} onBlur={handleBlur}
+                            defaultValue={this.props.details.title}/>
                             { errors.title && <div>ERROR : {errors.title}</div> }
-                            <input type="text" required name="overview" defaultValue={values.overview} onChange={handleChange} onBlur={handleBlur}/>
+                            <input type="text" required name="overview" value={values.overview} onChange={handleChange} 
+                            onBlur={handleBlur} defaultValue={this.props.details.overview}/>
                             { errors.overview && <div>ERROR : {errors.overview}</div> }
                         </ModalWithButton>
                     </>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Formik } from 'formik'
 
 import ModalWithButton from "./ModalWithButton"
 import AddMovieBtn from "./AddMovieBtn"
@@ -7,41 +8,52 @@ import AddMovieBtn from "./AddMovieBtn"
 import { addMovieAsync } from "../actions/actionCreator";
 
 class AddMovie extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.titleRef = React.createRef();
-        this.descrRef = React.createRef();
-    }
+
     state = {
         isOpen: false,
     }
-    hideModal = event => {
-        event.preventDefault();
+    reset = () => {
         this.setState({ ...this.state, isOpen: false});
     }
-
-    submitAddMovie = event => {
-        event.preventDefault();
+    submit = (values, actions) => {
+        const title = values.title;
+        const overview = values.overview;
         this.setState({ ...this.state, isOpen: false});
-        const title = this.titleRef.current.value;
-        const overview = this.descrRef.current.value;
-        console.log('Add movie ...', title, ',', overview)
-
         const { onAddMovie } = this.props;
-        onAddMovie({ title, overview });
+        onAddMovie({ ...this.props.details, title, overview })
+        actions.resetForm();
     }
+
+    validate = values => {
+        const errors = {};
+         if (!values.title) {
+            errors.title = 'Title cannot be empty'
+         }
+         if (!values.overview) {
+            errors.overview = 'Overview cannot be empty'
+         }
+         return errors
+    }    
 
     openModal = () => this.setState({ ...this.state, isOpen: true});
 
     render() {
         return (
-            <>
-                <AddMovieBtn openModal={this.openModal}/>
-                <ModalWithButton isOpen={this.state.isOpen} hideModal={this.hideModal} submit={this.submitAddMovie} title="Add Movie">
-                        <input type="text" required name="name" placeholder="name" id="addMovieName" ref={this.titleRef}/>
-                        <input type="text" required name="description" placeholder="description" id="addMovieDescr" ref={this.descrRef}/>
-                </ModalWithButton>
-            </>
+            <Formik initialValues={{ title: '', overview: '', 
+                openModal: this.openModal, hideModal: this.hideModal}} 
+                onSubmit={this.submit} validate={this.validate}  onReset={this.reset}>
+                {({values, errors, handleChange, handleSubmit, handleBlur, handleReset }) => (
+                    <>
+                    <AddMovieBtn openModal={values.openModal}/>
+                    <ModalWithButton isOpen={this.state.isOpen} hideModal={handleReset} submit={handleSubmit} title="Add Movie">
+                            <input type="text" required name="title" placeholder="name" id="addMovieName" defaultValue={values.title} onChange={handleChange} onBlur={handleBlur}/>
+                            { errors.title && <div>ERROR : {errors.title}</div> }
+                            <input type="text" required name="overview" placeholder="description" id="addMovieDescr" defaultValue={values.overview} onChange={handleChange} onBlur={handleBlur}/>
+                            { errors.overview && <div>ERROR : {errors.overview}</div> }
+                    </ModalWithButton>
+                    </>
+                )}
+            </Formik>
         );
     }
 }
