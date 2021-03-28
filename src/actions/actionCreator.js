@@ -3,8 +3,12 @@ import { SORT_MOVIES_SELECTED, MOVIES_REFRESHED,
 
 import MovieService from "../services/MovieService"
 
+const moviesRefreshed = movies => ({
+    type: MOVIES_REFRESHED,
+    payload: { movies }
+})
 
-export const addMovieAsync = ({ payload: { movie } }) => {
+export const addMovieAsync = movie => {
     return dispatch => {
       MovieService.addMovieAsync({ poster_path: 'http://posterpath.com/123', runtime: 123, genres: [ 'Action' ], ...movie })
         .then(movie => dispatch(moviesRefreshed([ movie ])))
@@ -12,7 +16,7 @@ export const addMovieAsync = ({ payload: { movie } }) => {
     };
 };
 
-export const deleteMovieAsync = ({ payload: { id } }) => {
+export const deleteMovieAsync = id => {
 
     return (dispatch, getState) => {
       const { genre, query, sortBy } = getState();
@@ -24,7 +28,7 @@ export const deleteMovieAsync = ({ payload: { id } }) => {
     };
 };
 
-export const editMovieAsync = ({ payload: { movie } }) => {
+export const editMovieAsync = movie => {
 
     return (dispatch, getState) => {
       const { genre, query, sortBy } = getState();
@@ -35,11 +39,6 @@ export const editMovieAsync = ({ payload: { movie } }) => {
         .catch(setError)
     };
 };
-
-export const moviesRefreshed = movies => ({
-    type: MOVIES_REFRESHED,
-    payload: { movies }
-})
 
 export const sortMoviesSelected = sortBy => ({
     type: SORT_MOVIES_SELECTED,
@@ -72,7 +71,7 @@ export const sortMoviesAsync = ({ payload: { sortBy } }) => {
     };
 };
 
-export const findMoviesAsync = ({ payload: { query } }) => {
+export const findMoviesAsync = query => {
     return (dispatch, getState) => {
       dispatch(findMoviesSelected(query));
       const { genre, sortBy } = getState();

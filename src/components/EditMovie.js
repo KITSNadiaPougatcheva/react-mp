@@ -1,53 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { Formik } from 'formik'
 
 import EditMovieBtn from "./EditMovieBth"
 import ModalWithButton from "./ModalWithButton"
 import { editMovieAsync } from "../actions/actionCreator";
 
 class EditMovie extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.titleRef = React.createRef();
-        this.descrRef = React.createRef();
-    }
     state = {
+        ...this.props.details,
         isOpen: false
     }
-    hideModal = event => {
-        event.preventDefault();
-        this.setState({isOpen: false});
+    reset = () => {
+        this.setState({ ...this.props.details, isOpen: false });
     }
-    openModal = () => this.setState({isOpen: true});
-    submit = event => {
-        event.preventDefault();
+    openModal = () => this.setState({...this.props.details, isOpen: true});
+    submit = values => {
         console.log(`Editing movie #${this.props.details.id}`)
-        const title = this.titleRef.current.value;
-        const overview = this.descrRef.current.value;
-        
-        this.setState({isOpen: false});
-
+        const title = values.title;
+        const overview = values.overview;
+        this.setState({ title, overview, isOpen: false });
         const { onEditMovie } = this.props;
         onEditMovie({ ...this.props.details, title, overview })
     }
 
+    validate = values => {
+        const errors = {};
+         if (!values.title) {
+            errors.title = 'Title cannot be empty'
+         }
+         if (!values.overview) {
+            errors.overview = 'Overview cannot be empty'
+         }
+         return errors
+    }
+
     render() {
         return (
-            <>
-                <EditMovieBtn openModal={this.openModal}/>
-                <ModalWithButton isOpen={this.state.isOpen} hideModal={this.hideModal} submit={this.submit} title="Edit Movie">
-                    <input type="text" required name="name" defaultValue={this.props.details.title} ref={this.titleRef}/>
-                    <input type="text" required name="description" defaultValue={this.props.details.overview} ref={this.descrRef}/>
-                </ModalWithButton>
-            </>
+            <Formik initialValues={{ title: this.props.details.title, overview: this.props.details.overview, 
+                openModal: this.openModal, hideModal: this.hideModal}} 
+                onSubmit={this.submit} validate={this.validate} onReset={this.reset}>
+                {({values, errors, handleChange, handleSubmit, handleBlur, handleReset }) => (
+                    <>
+                        <EditMovieBtn openModal={values.openModal}/>
+                        <ModalWithButton isOpen={this.state.isOpen}  hideModal={handleReset} submit={handleSubmit} title="Edit Movie">
+                            <input type="text" required name="title" value={values.title} onChange={handleChange} onBlur={handleBlur}
+                            defaultValue={this.props.details.title}/>
+                            { errors.title && <div>ERROR : {errors.title}</div> }
+                            <input type="text" required name="overview" value={values.overview} onChange={handleChange} 
+                            onBlur={handleBlur} defaultValue={this.props.details.overview}/>
+                            { errors.overview && <div>ERROR : {errors.overview}</div> }
+                        </ModalWithButton>
+                    </>
+                )}
+            </Formik>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        onEditMovie: movie => dispatch(editMovieAsync({ payload: { movie } }))
-    }
-}
+const mapDispatchToProps = {
+    onEditMovie: editMovieAsync,
+};
 
 export default connect(null, mapDispatchToProps)(EditMovie);
